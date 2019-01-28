@@ -1,11 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const graphqlHTTP = require('express-graphql')
-const { graphqlSchema } = require('./api')
+const { graphqlSchema, routes } = require('./api')
 
 const app = express()
 
 app.use(bodyParser.json())
+
+app.use(routes)
 
 app.use(
   '/graphql',

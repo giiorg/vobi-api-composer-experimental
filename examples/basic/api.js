@@ -27,5 +27,6 @@ apiComposer
   .type('SimpleType')
 
 module.exports = {
-  graphqlSchema: apiComposer.getGraphqlSchema()
+  graphqlSchema: apiComposer.getGraphqlSchema(),
+  routes: apiComposer.getExpressRoutes()
 }
