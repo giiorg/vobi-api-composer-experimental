@@ -11,11 +11,6 @@ apiComposer
     name: 'String',
     value: 'Float'
   })
-  .createType('AnotherType', {
-    company: {
-      test: 'String'
-    }
-  })
 
 apiComposer
   .query('simple')
