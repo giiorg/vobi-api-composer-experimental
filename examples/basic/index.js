@@ -1,42 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const graphqlHTTP = require('express-graphql')
-const path = require('path')
-const { ApiComposer } = require('@giiorg/vobi-api-composer-experimental')
+const { graphqlSchema } = require('./api')
 
 const app = express()
 
 app.use(bodyParser.json())
 
-const apiComposer = new ApiComposer()
-
-apiComposer
-  .setResolversPath(path.resolve(__dirname, 'resolvers'))
-
-apiComposer
-  .createType('SimpleType', {
-    name: 'String',
-    value: 'Float'
-  })
-
-apiComposer
-  .query('simple')
-  .args({
-    name: 'String!'
-  })
-  .resolver('simple.hello')
-  .type('String')
-
-apiComposer
-  .mutation('simpleMutation')
-  .before('simple.before1')
-  .resolver('simple.simpleMutation')
-  .type('SimpleType')
-
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: apiComposer.getGraphqlSchema(),
+    schema: graphqlSchema,
     graphiql: true
   })
 )
