@@ -14,9 +14,9 @@ apiComposer
 
 apiComposer
   .query('simple')
-  .args({
-    name: 'String!'
-  })
+  // .args({
+  //   name: 'String!'
+  // })
   .resolve('simple.hello')
   .type('String')
 
@@ -25,6 +25,8 @@ apiComposer
   .before('simple.before1')
   .resolve('simple.simpleMutation')
   .type('SimpleType')
+
+console.log(apiComposer._resolvers)
 
 module.exports = {
   graphqlSchema: apiComposer.getGraphqlSchema(),
