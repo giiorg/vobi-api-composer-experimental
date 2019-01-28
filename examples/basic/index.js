@@ -8,6 +8,8 @@ const app = express()
 app.use(bodyParser.json())
 
 const apiComposer = new ApiComposer()
+apiComposer
+  .setResolversPath('./resolvers')
 
 apiComposer
   .query('simple')
