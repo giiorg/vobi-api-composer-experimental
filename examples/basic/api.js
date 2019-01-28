@@ -14,9 +14,9 @@ apiComposer
 
 apiComposer
   .query('simple')
-  // .args({
-  //   name: 'String!'
-  // })
+  .args({
+    name: 'String!'
+  })
   .resolve('simple.hello')
   .type('String')
 

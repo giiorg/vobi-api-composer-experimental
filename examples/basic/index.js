@@ -7,7 +7,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
-routes.get('/user', function (req, res) {
+routes.get('/user', async (req, res) => {
   res.send('OK');
 });
 console.log(routes)
