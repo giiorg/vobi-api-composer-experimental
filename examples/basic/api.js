@@ -17,13 +17,13 @@ apiComposer
   .args({
     name: 'String!'
   })
-  .resolver('simple.hello')
+  .resolve('simple.hello')
   .type('String')
 
 apiComposer
   .mutation('simpleMutation')
   .before('simple.before1')
-  .resolver('simple.simpleMutation')
+  .resolve('simple.simpleMutation')
   .type('SimpleType')
 
 module.exports = {
