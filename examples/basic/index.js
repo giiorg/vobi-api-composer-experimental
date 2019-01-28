@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const graphqlHTTP = require('express-graphql')
-const { ApiComposer } = require('../../lib')
+const { ApiComposer } = require('@giiorg/vobi-api-composer-experimental')
 
 const app = express()
 
@@ -11,6 +11,13 @@ const apiComposer = new ApiComposer()
 
 apiComposer
   .query('simple')
+  .args({
+    name: 'String!'
+  })
+  .resolver('simple.hello')
+
+apiComposer
+  .mutation('simpleMutation')
 
 app.use(
   '/graphql',
