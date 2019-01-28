@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "node index.js"
+  },
+  "name": "basic",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "graphql-compose": "^5.5.0"
+  }
+}
