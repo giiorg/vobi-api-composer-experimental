@@ -26,8 +26,6 @@ apiComposer
   .resolve('simple.simpleMutation')
   .type('SimpleType')
 
-console.log(apiComposer._resolvers)
-
 module.exports = {
   graphqlSchema: apiComposer.getGraphqlSchema(),
   routes: apiComposer.getExpressRoutes()

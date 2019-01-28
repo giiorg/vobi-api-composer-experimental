@@ -7,7 +7,11 @@ const app = express()
 
 app.use(bodyParser.json())
 
-app.use(routes)
+routes.get('/user', function (req, res) {
+  res.send('OK');
+});
+console.log(routes)
+app.use('/', routes)
 
 app.use(
   '/graphql',
