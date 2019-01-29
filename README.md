@@ -15,6 +15,59 @@ Here are main benefits:
 * Single source from which you can generate graphql schema, routes for express/koa and so on.
 * Middleware system which you can use to run functions before and after resolve function. You can run some middlewares synchronously and others - asynchronously.
 
+## Quick Look
+
+You can start as simple as this (using express-graphql to actually serve graphql API):
+```js
+const express = require('express')
+const bodyParser = require('body-parser')
+const graphqlHTTP = require('express-graphql')
+// import ApiComposer
+const { ApiComposer } = require('@vobi/api-composer')
+
+const app = express()
+
+app.use(bodyParser.json())
+
+// Initialize Api Composer
+const api = new ApiComposer()
+
+// Add simple query and simple mutation
+// First argument is a name of query/mutation and second - resolve function
+api.query('hello', () => 'Hello, World!')
+api.mutation('simpleMutation', () => 'I am a simple mutation')
+
+// Finally generate schema
+const graphqlSchema = api.getGraphqlSchema()
+
+// Pass schema to express' graphqlHTTP middleware
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: graphqlSchema,
+    graphiql: true
+  })
+)
+
+// That's it : ) enjoy!
+app.listen(8001, function () {
+  console.log('app launch on 8001')
+  console.log('Go to http://localhost:8001/graphql')
+})
+```
+
+Now on http://localhost:8001/graphql you can request using graphiql:
+```graphql
+query {
+  hello
+}
+```
+and
+```graphql
+mutation {
+  simpleMutation
+}
+```
 
 ## Getting Started
 
@@ -30,14 +83,24 @@ const { ApiComposer } = require('@vobi/api-composer')
 const apiComposer = new ApiComposer()
 ```
 
-Then you can use it to describe your API
+To describe a query you need just provide it's name and resolve function:
 ```js
 apiComposer
   .query('simpleQuery')
-  .resolve(async () => 'I am simple query')
+  .resolve(() => 'I am simple query')
 ```
 
-After you finish describing your API, then you can generate anything what you want. api-composer comes with GraphQL schema generator which is based on great toolkit graphql-compose. You can get graphql schema like so:
+You can also provide resolve function as a second argument of query/mutation method:
+query:
+```js
+apiComposer.query('simpleQuery', () => 'I am a simple query')
+```
+mutation:
+```js
+apiComposer.mutation('simpleMutation', () => 'I am a simple mutation')
+```
+
+After you finish describing your API, you can generate anything what you want from it. As mentioned api-composer comes with GraphQL schema generator. You can get graphql schema like so:
 ```js
 const graphqlSchema = apiComposer.getGraphqlSchema()
 ```
@@ -51,6 +114,8 @@ const apiComposer = new ApiComposer()
 apiComposer
   .query('simpleQuery')
   .resolve(async () => 'I am simple query')
+
+apiComposer.mutation('simpleMutation', () => 'I am simple mutation')
 
 module.exports = {
   graphqlSchema: apiComposer.getGraphqlSchema()
