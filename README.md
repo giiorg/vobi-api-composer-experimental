@@ -2,6 +2,10 @@
 
 api-composer is a tool to describe node.js APIs with simple and elegant syntax. If you like simplicity and need to build complex GraphQL and/or REST APIs from single API description, you will love api-composer.
 
+## Table of Contents
+- [Quick Demo](#quick-demo)
+- [More complex examples](#complex-examples)
+
 ## Why?
 
 Simply speaking api-composer is a kind of configuration layer. It's just a way to describe API
@@ -23,7 +27,7 @@ md coolapi && cd coolapi
 npm init -y
 ```
 
-Install all dependencies:
+Install some packages to actually build and serve graphql api
 ```
 npm i @vobi/api-composer graphql graphql-compose express express-graphql body-parser
 ```
@@ -86,6 +90,8 @@ mutation {
   simpleMutation
 }
 ```
+
+## More Complex Examples
 
 ## Getting Started
 
