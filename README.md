@@ -6,7 +6,7 @@ Toolkit for generating GraphQL schemas and REST APIs from unified configuration 
 
 Install api-composer
 ```
-npm i api-composer
+npm i @vobi/api-composer
 ```
 
 Import and initialize ApiComposer instance
