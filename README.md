@@ -15,32 +15,50 @@ Here are main benefits:
 * Single source from which you can generate graphql schema, routes for express/koa and so on.
 * Middleware system which you can use to run functions before and after resolve function. You can run some middlewares synchronously and others - asynchronously.
 
-## Quick Look
+## Quick Demo
 
-You can start as simple as this (using express-graphql to actually serve graphql API):
+Create simple project and initialize package.json
+```bash
+md coolapi && cd coolapi
+npm init -y
+```
+
+Install all dependencies:
+```bash
+npm i @vobi/api-composer graphql graphql-compose express express-graphql body-parser
+```
+
+Create index.js file
+```bash
+touch index.js
+```
+
+You can start as simple as this (using express-graphql to actually serve graphql API), just place the code below to index.js file:
 ```js
 const express = require('express')
 const bodyParser = require('body-parser')
 const graphqlHTTP = require('express-graphql')
-// import ApiComposer
+/** import ApiComposer */
 const { ApiComposer } = require('@vobi/api-composer')
 
 const app = express()
 
 app.use(bodyParser.json())
 
-// Initialize Api Composer
+/** Initialize Api Composer */
 const api = new ApiComposer()
 
-// Add simple query and simple mutation
-// First argument is a name of query/mutation and second - resolve function
+/** 
+ * Add simple query and simple mutation
+ * First argument is a name of query/mutation and second - resolve function
+ */
 api.query('hello', () => 'Hello, World!')
 api.mutation('simpleMutation', () => 'I am a simple mutation')
 
-// Finally generate schema
+/** Finally generate schema */
 const graphqlSchema = api.getGraphqlSchema()
 
-// Pass schema to express' graphqlHTTP middleware
+/** Pass schema to express' graphqlHTTP middleware */
 app.use(
   '/graphql',
   graphqlHTTP({
@@ -49,14 +67,14 @@ app.use(
   })
 )
 
-// That's it : ) enjoy!
+/** That's it : ) enjoy! */
 app.listen(8001, function () {
   console.log('app launch on 8001')
   console.log('Go to http://localhost:8001/graphql')
 })
 ```
 
-Now on http://localhost:8001/graphql you can request using graphiql:
+When you run the program (node index.js) and open http://localhost:8001/graphql you can request to our query and mutation:
 ```graphql
 query {
   hello
