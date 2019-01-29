@@ -1,6 +1,6 @@
 # API Composer 
 
-Toolkit for generating GraphQL schemas and REST APIs from unified configuration API
+Generate GraphQL schemas and REST APIs form unified, simple and elegant configuration API
 
 ## Getting Started
 
