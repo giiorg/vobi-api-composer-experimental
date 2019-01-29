@@ -3,6 +3,8 @@
 api-composer is a tool to describe node.js APIs with simple and elegant syntax. If you like simplicity and need to build complex GraphQL and/or REST APIs from single API description, you will love api-composer.
 
 ## Table of Contents
+- [Why?](#why?)
+- [Install](#install)
 - [Quick Demo](#quick-demo)
 - [More complex examples](#complex-examples)
 
@@ -18,6 +20,11 @@ Here are main benefits:
 * Simple and elegant syntax to describe API.
 * Single source from which you can generate graphql schema, routes for express/koa and so on.
 * Middleware system which you can use to run functions before and after resolve function. You can run some middlewares synchronously and others - asynchronously.
+
+## Install
+```
+npm i @vobi/api-composer
+```
 
 ## Quick Demo
 
