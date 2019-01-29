@@ -34,7 +34,7 @@ md coolapi && cd coolapi
 npm init -y
 ```
 
-Install some packages to actually build and serve graphql api
+Install some npm packages to actually build and serve graphql api
 ```
 npm i @vobi/api-composer graphql graphql-compose express express-graphql body-parser
 ```
@@ -44,41 +44,71 @@ Create index.js file
 touch index.js
 ```
 
-You can start as simple as this (using express-graphql to actually serve graphql API), just place the code below to index.js file:
+Alongside of other necessary modules import and initialize api-composer
 ```js
 const express = require('express')
 const bodyParser = require('body-parser')
 const graphqlHTTP = require('express-graphql')
-/** import ApiComposer */
 const { ApiComposer } = require('@vobi/api-composer')
 
 const app = express()
 
 app.use(bodyParser.json())
 
-/** Initialize Api Composer */
 const api = new ApiComposer()
 
-/** 
- * Add simple query and simple mutation
- * First argument is a name of query/mutation and second - resolve function
- */
+```
+ 
+Add simple query and simple mutation.
+```js
 api.query('hello', () => 'Hello, World!')
 api.mutation('simpleMutation', () => 'I am a simple mutation')
+```
+First argument is a name of query/mutation and second - resolve function.
 
-/** Finally generate schema */
-const graphqlSchema = api.getGraphqlSchema()
-
-/** Pass schema to express' graphqlHTTP middleware */
+Finally, you can generate and pass schema to express' graphqlHTTP middleware, and run express app
+```js
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: graphqlSchema,
+    schema: api.getGraphqlSchema(),
     graphiql: true
   })
 )
 
-/** That's it : ) enjoy! */
+app.listen(8001, function () {
+  console.log('app launch on 8001')
+  console.log('Go to http://localhost:8001/graphql')
+})
+```
+
+That's it. Complete index.js file will look like this
+```js
+const express = require('express')
+const bodyParser = require('body-parser')
+const graphqlHTTP = require('express-graphql')
+const { ApiComposer } = require('@vobi/api-composer')
+
+const app = express()
+
+app.use(bodyParser.json())
+
+
+const api = new ApiComposer()
+
+api.query('hello', () => 'Hello, World!')
+api.mutation('simpleMutation', () => 'I am a simple mutation')
+
+const graphqlSchema = api.getGraphqlSchema()
+
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: api.getGraphqlSchema(),
+    graphiql: true
+  })
+)
+
 app.listen(8001, function () {
   console.log('app launch on 8001')
   console.log('Go to http://localhost:8001/graphql')
