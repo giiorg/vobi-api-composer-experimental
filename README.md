@@ -1,6 +1,6 @@
 # API Composer 
 
-Generate GraphQL schemas and REST APIs form unified, simple and elegant configuration API
+api-composer is a tool to describe node.js APIs with simple and elegant syntax. If you need to build GraphQL and/or REST from single configuration, you will like api-composer.
 
 ## Getting Started
 
