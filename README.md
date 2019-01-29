@@ -1,6 +1,20 @@
 # API Composer 
 
-api-composer is a tool to describe node.js APIs with simple and elegant syntax. If you need to build GraphQL and/or REST from single configuration, you will like api-composer.
+api-composer is a tool to describe node.js APIs with simple and elegant syntax. If you like simplicity and need to build complex GraphQL and/or REST APIs from single API description, you will love api-composer.
+
+## Why?
+
+Simply speaking api-composer is a kind of configuration layer. It's just a way to describe API
+with the concepts coming from graphql ecosystem. You can generate anything you want from
+this description. You need just write your own plugin for this purpose or use already built plugins. By default api-composer comes with graphql schema generator that is based on excellent [link](https://github.com/graphql-compose/graphql-compose "graphql-composer") library.
+
+With adopting api-composer you can graphqlize even your REST API. 
+
+Here are main benefits:
+* Simple and elegant syntax to describe API.
+* Single source from which you can generate graphql schema, routes for express/koa and so on.
+* Middleware system which you can use to run functions before and after resolve function. You can run some middlewares synchronously and others - asynchronously.
+
 
 ## Getting Started
 
@@ -69,6 +83,18 @@ app.listen(8001, function () {
 ```
 
 You can see whole example in ./examples folder of this repository.
+
+## More examples
+
+Declaring simple query or mutation can be as easy as:
+```js
+apiComposer.query('query1', () => 'I am a simple query')
+
+apiComposer.mutation('mutation1', () => 'I am a simple mutation')
+```
+
+First argument is the name of query/mutation.
+The second argument is optional resolve function.
 
 ### License
 
