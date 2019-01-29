@@ -18,18 +18,18 @@ Here are main benefits:
 ## Quick Demo
 
 Create simple project and initialize package.json
-```console
+```
 md coolapi && cd coolapi
 npm init -y
 ```
 
 Install all dependencies:
-```console
+```
 npm i @vobi/api-composer graphql graphql-compose express express-graphql body-parser
 ```
 
 Create index.js file
-```console
+```
 touch index.js
 ```
 
