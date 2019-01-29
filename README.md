@@ -6,7 +6,7 @@ api-composer is a tool to describe node.js APIs with simple and elegant syntax. 
 
 Simply speaking api-composer is a kind of configuration layer. It's just a way to describe API
 with the concepts coming from graphql ecosystem. You can generate anything you want from
-this description. You need just write your own plugin for this purpose or use already built plugins. By default api-composer comes with graphql schema generator that is based on excellent [link](https://github.com/graphql-compose/graphql-compose "graphql-composer") library.
+this description. You need just write your own plugin for this purpose or use already built plugins. By default api-composer comes with graphql schema generator that is based on excellent [graphql-composer](https://github.com/graphql-compose/graphql-compose "graphql-composer") library.
 
 With adopting api-composer you can graphqlize even your REST API. 
 
