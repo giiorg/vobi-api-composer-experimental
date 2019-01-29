@@ -41,6 +41,23 @@ apiComposer
   .query('hello')
   .resolve(async () => 'Hello, World!')
 
+apiComposer
+  .mutation('splitHello')
+  .resolve(async () => 'Hello, World!'.split(', '))
+
+async function hello2Resolve () {
+  return 'hello2'
+} 
+
+apiComposer
+  .query('hello2')
+  .resolve(hello2Resolve)
+
+const hello3Resolver = require('./resolvers/hello3')
+apiComposer
+  .query('hello3')
+  .resolve(hello3Resolver)
+
 /**
  * You can also specify arguments with .args method which takes (possibly nested) object
  * You can also specify return type which must be one of graphql scalars
