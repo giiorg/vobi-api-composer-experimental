@@ -1,7 +1,7 @@
 const path = require('path')
-const { Lugan } = require('@giiorg/vobi-api-composer-experimental')
+const { ApiComposer } = require('@giiorg/vobi-api-composer-experimental')
 
-const lugar = new Lugar()
+const apiComposer = new ApiComposer()
 
 /**
  * If you want to provide resolver function by name as string,
