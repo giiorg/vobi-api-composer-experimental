@@ -53,3 +53,7 @@ app.listen(8001, function () {
 ```
 
 You can view whole example in examples folder of this repository.
+
+### License
+
+API Composer is [MIT licensed](./LICENSE).
