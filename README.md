@@ -10,26 +10,26 @@ npm i api-composer
 ```
 
 Import and initialize ApiComposer instance
-```
+```js
 const { ApiComposer } = require('@vobi/api-composer')
 
 const apiComposer = new ApiComposer()
 ```
 
 Then you can use it to describe your API
-```
+```js
 apiComposer
   .query('simpleQuery')
   .resolve(async () => 'I am simple query')
 ```
 
 After you finish describing your API, then you can generate anything what you want. api-composer comes with GraphQL schema generator which is based on great toolkit graphql-compose. You can get graphql schema like so:
-```
+```js
 const graphqlSchema = apiComposer.getGraphqlSchema()
 ```
 
 Then use this schema as you want. For example with Express:
-```
+```js
 const express = require('express')
 const bodyParser = require('body-parser')
 const graphqlHTTP = require('express-graphql')
