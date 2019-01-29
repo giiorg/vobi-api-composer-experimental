@@ -1,7 +1,7 @@
 const path = require('path')
-const { ApiComposer } = require('@giiorg/vobi-api-composer-experimental')
+const { Lugan } = require('@giiorg/vobi-api-composer-experimental')
 
-const apiComposer = new ApiComposer()
+const lugar = new Lugar()
 
 /**
  * If you want to provide resolver function by name as string,
@@ -32,14 +32,21 @@ apiComposer
  * Simple query
  * 
  * To initialize simple resolver you need this two method: query (or mutation) and resolve
- * .query (and .mutation) takes only one argument - name of query (or mutation)
+ * .query (and .mutation) takes one mandatory argument - name of query (or mutation)
  * 
- * .resolve takes one argument: async function or string that points to async function
+ * .resolve takes one argument: function or string that points to function
  * 
 */
 apiComposer
   .query('hello')
   .resolve(async () => 'Hello, World!')
+
+/**
+ * Inline
+ * 
+ * You can specify resolve function as second argument of query and mutation method
+*/
+apiComposer.query('hello4', () => 'Hello!')
 
 apiComposer
   .mutation('splitHello')
