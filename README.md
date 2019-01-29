@@ -28,7 +28,23 @@ After you finish describing your API, then you can generate anything what you wa
 const graphqlSchema = apiComposer.getGraphqlSchema()
 ```
 
-Then use this schema as you want. For example with Express:
+Whole example of api.js file:
+```js
+const { ApiComposer } = require('@vobi/api-composer')
+
+const apiComposer = new ApiComposer()
+
+apiComposer
+  .query('simpleQuery')
+  .resolve(async () => 'I am simple query')
+
+module.exports = {
+  graphqlSchema: apiComposer.getGraphqlSchema()
+}
+
+```
+
+Then use this schema as you want. For example with Express (index.js):
 ```js
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -52,7 +68,7 @@ app.listen(8001, function () {
 })
 ```
 
-You can view whole example in examples folder of this repository.
+You can see whole example in ./examples folder of this repository.
 
 ### License
 
