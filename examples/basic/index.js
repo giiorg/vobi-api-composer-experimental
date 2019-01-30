@@ -17,8 +17,8 @@ app.use(
   })
 )
 
-app.listen(8001, function () {
-  console.log('app launch on 8001')
-  console.log('Go to http://localhost:8001/graphql for preview')
+app.listen(8000, function () {
+  console.log('app launch on 8000')
+  console.log('Go to http://localhost:8000/graphql for preview')
 })
 

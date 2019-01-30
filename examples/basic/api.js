@@ -41,21 +41,9 @@ apiComposer
   .query('hello')
   .resolve(async () => 'Hello, World!')
 
-/**
- * Inline
- * 
- * You can specify resolve function as second argument of query and mutation method
-*/
-apiComposer.query('hello4', () => 'Hello!')
-
-apiComposer
-  .mutation('splitHello')
-  .resolve(async () => 'Hello, World!'.split(', '))
-
 async function hello2Resolve () {
   return 'hello2'
-} 
-
+}
 apiComposer
   .query('hello2')
   .resolve(hello2Resolve)
@@ -64,6 +52,17 @@ const hello3Resolver = require('./resolvers/hello3')
 apiComposer
   .query('hello3')
   .resolve(hello3Resolver)
+
+apiComposer
+  .mutation('splitHello')
+  .resolve(async () => 'Hello, World!'.split(', '))
+
+/**
+ * Inline
+ * 
+ * You can specify resolve function as second argument of query (or mutation) method
+*/
+apiComposer.query('hello4', () => 'Hello!')
 
 /**
  * You can also specify arguments with .args method which takes (possibly nested) object
@@ -78,8 +77,7 @@ apiComposer
   .type('String')
 
 /**
- * We already created type before and now can specify by name 'SimpleType'
- * as return type.
+ * We already created type and now we can specify it by name 'SimpleType' as return type.
 */
 apiComposer
   .mutation('simpleMutation')
