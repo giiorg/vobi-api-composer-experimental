@@ -30,7 +30,7 @@ npm i @vobi/api-composer
 
 Create simple project and initialize package.json
 ```
-md coolapi && cd coolapi
+mkdir coolapi && cd coolapi
 npm init -y
 ```
 
@@ -64,7 +64,7 @@ Add simple query and simple mutation.
 api.query('hello', () => 'Hello, World!')
 api.mutation('simpleMutation', () => 'I am a simple mutation')
 ```
-First argument is a name of query/mutation and second - resolve function.
+Note: first argument is a name of query/mutation and second - resolve function.
 
 Finally, you can generate and pass schema to express' graphqlHTTP middleware, and run express app
 ```js
@@ -76,9 +76,9 @@ app.use(
   })
 )
 
-app.listen(8001, function () {
-  console.log('app launch on 8001')
-  console.log('Go to http://localhost:8001/graphql')
+app.listen(8000, function () {
+  console.log('app launch on 8000')
+  console.log('Go to http://localhost:8000/graphql')
 })
 ```
 
@@ -92,7 +92,6 @@ const { ApiComposer } = require('@vobi/api-composer')
 const app = express()
 
 app.use(bodyParser.json())
-
 
 const api = new ApiComposer()
 
@@ -117,110 +116,20 @@ app.listen(8001, function () {
 
 When you run the program (node index.js) and open http://localhost:8001/graphql you can request to our query and mutation:
 ```graphql
-query {
+query hello {
   hello
 }
 ```
 and
 ```graphql
-mutation {
+mutation simpleMutation {
   simpleMutation
 }
 ```
 
-## More Complex Examples
+## More Examples
 
-## Getting Started
-
-Install api-composer
-```
-npm i @vobi/api-composer
-```
-
-Import and initialize ApiComposer instance
-```js
-const { ApiComposer } = require('@vobi/api-composer')
-
-const apiComposer = new ApiComposer()
-```
-
-To describe a query you need just provide it's name and resolve function:
-```js
-apiComposer
-  .query('simpleQuery')
-  .resolve(() => 'I am simple query')
-```
-
-You can also provide resolve function as a second argument of query/mutation method:
-query:
-```js
-apiComposer.query('simpleQuery', () => 'I am a simple query')
-```
-mutation:
-```js
-apiComposer.mutation('simpleMutation', () => 'I am a simple mutation')
-```
-
-After you finish describing your API, you can generate anything what you want from it. As mentioned api-composer comes with GraphQL schema generator. You can get graphql schema like so:
-```js
-const graphqlSchema = apiComposer.getGraphqlSchema()
-```
-
-Whole example of api.js file:
-```js
-const { ApiComposer } = require('@vobi/api-composer')
-
-const apiComposer = new ApiComposer()
-
-apiComposer
-  .query('simpleQuery')
-  .resolve(async () => 'I am simple query')
-
-apiComposer.mutation('simpleMutation', () => 'I am simple mutation')
-
-module.exports = {
-  graphqlSchema: apiComposer.getGraphqlSchema()
-}
-
-```
-
-Then use this schema as you want. For example with Express (index.js):
-```js
-const express = require('express')
-const bodyParser = require('body-parser')
-const graphqlHTTP = require('express-graphql')
-const { graphqlSchema } = require('./api')
-
-const app = express()
-app.use(bodyParser.json())
-
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema: graphqlSchema,
-    graphiql: true
-  })
-)
-
-app.listen(8001, function () {
-  console.log('app launch on 8001')
-  console.log('Go to http://localhost:8001/graphql for preview')
-})
-```
-
-You can see whole example in ./examples folder of this repository.
-
-## More examples
-
-Declaring simple query or mutation can be as easy as:
-```js
-apiComposer.query('query1', () => 'I am a simple query')
-
-apiComposer.mutation('mutation1', () => 'I am a simple mutation')
-```
-
-First argument is the name of query/mutation.
-The second argument is optional resolve function.
+You can see more examples in [./examples](https://github.com/giiorg/vobi-api-composer-experimental/tree/master/examples) folder of this repository.
 
 ### License
 
