@@ -62,3 +62,5 @@ config/.env
 ./temp.js
 src/public/uploads/*
 !src/public/uploads/.gitkeep
+
+examples/basic-local

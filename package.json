@@ -12,6 +12,11 @@
     "package"
   ],
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "graphql-compose": "^5.5.0",
     "macroable": "^2.0.0"
   },
   "peerDependencies": {
